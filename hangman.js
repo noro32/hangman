@@ -56,5 +56,6 @@ image.src = `images/hangman${guessCount}.gif`;
     guessCount--;
  }
  guesses+=letter;
+ input.value="";
  updatePage();
  }
