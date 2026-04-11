@@ -26,7 +26,11 @@ updatePage();
  let updatePage = function(){
 let clueString = "";
 for(let i = 0; i< word.length; i++)
+    // win lose 
 
+
+
+ 
 {
     var currentLetter = word.charAt(i);
     if(guesses.indexOf(currentLetter)>=0){
@@ -49,6 +53,12 @@ image.src = `images/hangman${guessCount}.gif`;
 
  }
  let guessLetter = function(){
+    // task 3: dont allow guesses before a word is chosen
+    if(word ===""){
+     alert("press new game to start");
+     return;
+    }
+    
  let input = document.getElementById("guess");
  let letter = input.value;
  letter = letter.toLowerCase();
