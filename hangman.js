@@ -5,15 +5,18 @@ const POSSIBLE_WORDS =
 
 var word="";
 var guesses= "";
+var guessCount;
+const MAX_GUESSES=6;
 
 let newGame = function()
 
 {
 
 // pick a word 
-
+guessCount= MAX_GUESSES;
 let randomIndex = parseInt(Math.random()*POSSIBLE_WORDS.length);
  word = POSSIBLE_WORDS[randomIndex];
+ guesses="";
 
 
 // dashes 
@@ -34,17 +37,24 @@ for(let i = 0; i< word.length; i++)
     }
     
 
-}
+} 
 
 let clue = document.getElementById("clue");
 clue.textContent = clueString;
 let guessArea= document.getElementById("guesses");
 guessArea.textContent="Guesses: "+guesses;
 
+let image = document.getElementById("hangmanpic");
+image.src = `images/hangman${guessCount}.gif`;
+
  }
  let guessLetter = function(){
  let input = document.getElementById("guess");
  let letter = input.value;
+ letter = letter.toLowerCase();
+ if(word.indexOf(letter)<0){
+    guessCount--;
+ }
  guesses+=letter;
  updatePage();
  }
