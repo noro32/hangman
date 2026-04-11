@@ -26,7 +26,7 @@ updatePage();
  let updatePage = function(){
 let clueString = "";
 for(let i = 0; i< word.length; i++)
-    // win lose 
+
 
 
 
@@ -53,15 +53,31 @@ image.src = `images/hangman${guessCount}.gif`;
 
  }
  let guessLetter = function(){
-    // task 3: dont allow guesses before a word is chosen
+    //  dont allow guesses before a word is chosen
     if(word ===""){
      alert("press new game to start");
      return;
     }
-    
+ // do not allow guesses when the game is finished 
+if(guessCount <= 0){
+    alert("The game is over! Press New Game to play again.");
+    return;
+}
+if(guessArea.textContent.startsWith("You")){
+    alert("The game is over! Press New Game to play again.");
+    return;
+}
+
+
  let input = document.getElementById("guess");
  let letter = input.value;
  letter = letter.toLowerCase();
+ //Don't allow the same letter to be guessed twice
+ if(guesses.indexOf(letter) >= 0){
+    alert("You already guessed '" + letter + "'! Try a different letter.");
+    input.value = "";
+    return;
+}
  if(word.indexOf(letter)<0){
     guessCount--;
  }
